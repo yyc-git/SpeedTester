@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试页面</title>
+    <meta charset="utf-8" content="text/html">
+    <!--jasmine-->
+    <link rel="stylesheet" type="text/css" href="../script/jasmine/lib/jasmine-1.3.1/jasmine.css"/>
+
+    <script src="../script/jasmine/lib/jasmine-1.3.1/jasmine.js"></script>
+    <script src="../script/jasmine/lib/jasmine-1.3.1/jasmine-html.js"></script>
+
+    <!--jasmine扩展-->
+    <script src="../script/jasmine/spec/helper/specHelper.js"></script>
+    <script src="../script/jasmine/src/tool.js"></script>
+
+
+    <!--依赖库-->
+    <script src="../script/jquery-1.7.js"></script>
+    <script src="../script/myTool/frame/YOOP.js"></script>
+    <script src="../script/myTool/tool/YTool.js"></script>
+
+    <!--测试工具-->
+    <script src="../script/jasmine/sinonJs/sinon.js"></script>
+    <script src="../script/jasmine/sinonJs/sinonExtend.js"></script>
+
+    <!--speedTester-->
+    <script src="../speedTester/foregroundJs/DataCollection.js"></script>
+    <script src="../speedTester/foregroundJs/showResult.js"></script>
+    <!--测试代码-->
+    <script src="../speedTester/foregroundJs/DataCollectionSpec.js"></script>
+    <script src="../speedTester/foregroundJs/showResultSpec.js"></script>
+<body>
+
+
+<script type="text/javascript">
+    (function () {
+        var jasmineEnv = jasmine.getEnv();
+        jasmineEnv.updateInterval = 1000;
+
+        var htmlReporter = new jasmine.HtmlReporter();
+
+        jasmineEnv.addReporter(htmlReporter);
+
+        jasmineEnv.specFilter = function (spec) {
+            return htmlReporter.specFilter(spec);
+        };
+        function execJasmine() {
+            jasmineEnv.execute();
+        }
+
+
+        var currentWindowOnload = window.onload;
+
+        if (currentWindowOnload) {
+            currentWindowOnload();
+        }
+        execJasmine();
+    })();
+</script>
+
+</body>
+</html>
